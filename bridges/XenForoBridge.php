@@ -125,29 +125,29 @@ class XenForoBridge extends BridgeAbstract {
 		}
 
 		switch($this->version) {
-			case self::XENFORO_VERSION_1:
+                    case self::XENFORO_VERSION_1:
 
-				$titleBar = $mainContent->find('div.titleBar > h1', 0)
-					or returnServerError('Error finding title bar!');
+                            $titleBar = $mainContent->find('div.titleBar > h1', 0)
+                                    or returnServerError('Error finding title bar!');
 
-				$this->title = $titleBar->plaintext;
+                            $this->title = $titleBar->plaintext;
 
-				// Store items from current page (we'll use $this->items as LIFO buffer)
-				$this->extractThreadPostsV1($html, $this->threadurl);
-				$this->extractPagesV1($html);
+                            // Store items from current page (we'll use $this->items as LIFO buffer)
+                            $this->extractThreadPostsV1($html, $this->threadurl);
+                            $this->extractPagesV1($html);
 
-				break;
+                            break;
 
-			case self::XENFORO_VERSION_2:
+                    case self::XENFORO_VERSION_2:
 
-				$titleBar = $mainContent->find('div[class~="p-title"] h1', 0)
-					or returnServerError('Error finding title bar!');
+                            $titleBar = $mainContent->find('div[class~="p-title"] h1', 0)
+                                    or returnServerError('Error finding title bar!');
 
-				$this->title = $titleBar->plaintext;
-				$this->extractThreadPostsV2($html, $this->threadurl);
-				$this->extractPagesV2($html);
+                            $this->title = $titleBar->plaintext;
+                            $this->extractThreadPostsV2($html, $this->threadurl);
+                            $this->extractPagesV2($html);
 
-				break;
+                            break;
 		}
 
 		while(count($this->items) > $this->getInput('limit')) {
@@ -269,7 +269,7 @@ class XenForoBridge extends BridgeAbstract {
 			$item['uri'] = $url . '#' . $post->getAttribute('id');
 
 			#$title = $post->find('div[class~="message-content"] article', 0)->plaintext;
-			$title = $post->find('.threadmarkLabel ', 0)->plaintext;
+			$title = $post->find('span[class="threadmarkLabel "]', 0)->plaintext;
 			$end = strpos($title, ' ', 70);
 			$item['title'] = substr($title, 0, $end);
 
