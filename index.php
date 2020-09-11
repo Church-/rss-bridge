@@ -18,10 +18,7 @@ if (isset($argv)) {
 }
 
 define('USER_AGENT',
-	'Mozilla/5.0 (X11; Linux x86_64; rv:72.0) Gecko/20100101 Firefox/72.0(rss-bridge/'
-	. Configuration::$VERSION
-	. ';+'
-	. REPOSITORY
+	'Mozilla/5.0 (compatible; archive.org_bot +http://www.archive.org/details/archive.org_bot)'
 	. ')'
 );
 
