@@ -19,7 +19,6 @@ if (isset($argv)) {
 
 define('USER_AGENT',
 	'Mozilla/5.0 (compatible; archive.org_bot +http://www.archive.org/details/archive.org_bot)'
-	. ')'
 );
 
 ini_set('user_agent', USER_AGENT);
