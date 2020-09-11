@@ -130,7 +130,8 @@ class XenForoBridge extends BridgeAbstract {
 				$titleBar = $mainContent->find('div.titleBar > h1', 0)
 					or returnServerError('Error finding title bar!');
 
-				$this->title = $titleBar->plaintext;
+				#$this->title = $titleBar->plaintext;
+                                $this->title = htmlspecialchars_decode($titleBar->plaintext, ENT_COMPAT);
 
 				// Store items from current page (we'll use $this->items as LIFO buffer)
 				$this->extractThreadPostsV1($html, $this->threadurl);
@@ -143,7 +144,8 @@ class XenForoBridge extends BridgeAbstract {
 				$titleBar = $mainContent->find('div[class~="p-title"] h1', 0)
 					or returnServerError('Error finding title bar!');
 
-				$this->title = $titleBar->plaintext;
+				#$this->title = $titleBar->plaintext;
+                                $this->title = htmlspecialchars_decode($titleBar->plaintext, ENT_COMPAT);
 				$this->extractThreadPostsV2($html, $this->threadurl);
 				$this->extractPagesV2($html);
 
